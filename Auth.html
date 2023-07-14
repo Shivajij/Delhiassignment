@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login and Fetch Todos</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>Login and Fetch Todos</h1>
+
+        <button id="loginButton">Login</button>
+        <div id="bearerToken"></div>
+        <button id="getTodosButton" disabled>Get Todos</button>
+        <div id="todoList"></div>
+
+        <script>
+            var loginUrl = 'http://todo-api.aavaz.biz/login';
+            var todosUrl = 'http://todo-api.aavaz.biz/todos';
+            var credentials = {
+                email: 'bob@bob.com',
+                password: 'H3llo'
+            };
+
+            $('#loginButton').click(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: loginUrl,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': '*/*'
+                    },
+                    data: JSON.stringify(credentials),
+                    success: function(data, textStatus, request){
+                        var headers = request.getAllResponseHeaders();
+                        headers = headers.split("\n").map(x=>x.split(/: */,2)).filter(x=>x[1]);
+                        headers.forEach(header => console.log(header));
+
+                        var bearerToken = request.getResponseHeader('Authorization');
+                        $('#bearerToken').text('Bearer Token: ' + bearerToken);
+
+                        $('#getTodosButton').prop('disabled', false).click(function() {
+                            $.ajax({
+                                type: 'GET',
+                                url: todosUrl,
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Authorization': bearerToken,
+                                    'Content-Type': 'application/json'
+                                },
+                                success: function(todosResponse) {
+                                    var todoList = $('<ol></ol>');
+                                    todosResponse.content.forEach(function(todo) {
+                                        todoList.append('<li>' + todo.title + '</li>');
+                                    });
+                                    $('#todoList').empty().append(todoList);
+                                },
+                                error: function (request, textStatus, errorThrown) {
+                                    console.log('Error:', textStatus, errorThrown);
+                                }
+                            });
+                        });
+                    },
+                    error: function (request, textStatus, errorThrown) {
+                        console.log('Error:', textStatus, errorThrown);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

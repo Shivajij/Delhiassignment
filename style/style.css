@@ -1,0 +1,94 @@
+/* login signUp styling */
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url('https://as1.ftcdn.net/v2/jpg/01/79/29/18/1000_F_179291869_9JMeUh8vbcQW7GTiXt0bkZwSowwAHW4H.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.form-container {
+  max-width: 450px;
+  padding: 40px;
+  border-radius: 5px;
+  background-color: #ccc4c4;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 60%;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-container .form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-container .form-control {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.form-container .form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
+}
+
+.form-container .btn-primary {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.form-container .btn-primary:hover {
+  background-color: #0069d9;
+}
+
+.text {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  color: rgb(249, 79, 161);
+  font-size: 36px;
+}
+
+/* Media Queries */
+@media (max-width: 576px) {
+  .text {
+    display: none;
+  }
+  
+  .form-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ccc4c4;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    
+  }
+}

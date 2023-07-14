@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./style/todo.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col box">
+        <h2>Create Todo</h2>
+        <form id="todo-form">
+          <div class="form-group">
+            <input type="text" id="todo-input" placeholder="Enter your task">
+            <button type="submit">Add Task</button>
+          </div>
+        </form>
+        <ul id="todo-list" class="list-group mt-3">
+          <!-- Dynamically added tasks will appear here -->
+        </ul>
+      </div>
+      <div class="col box">
+        <h2>Completed</h2>
+        <ul id="completed-list" class="list-group">
+            <!-- Completed tasks will appear here -->
+        </ul>
+        <button id="delete-completed-button" type="button">Delete All Completed Todos</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="./script/index.js"></script>
+</body>
+</html>
